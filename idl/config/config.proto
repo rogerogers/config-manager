@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "api";
+
+message CreateConfigReq {
+  string namespace = 1;
+  string group = 2;
+  string filename = 3;
+}
+
+message CreateConfigReply {
+  int32 code = 1;
+}
+
+service Config{
+  rpc CreateConfig(CreateConfigReq) returns(CreateConfigReply);
+}
