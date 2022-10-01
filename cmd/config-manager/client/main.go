@@ -8,11 +8,13 @@ import (
 	"github.com/rogerogers/config-manager/kitex_gen/api"
 	"github.com/rogerogers/config-manager/kitex_gen/api/config"
 
-	kclient "github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/client/callopt"
 )
 
 func main() {
-	client, err := config.NewClient("config", kclient.WithHostPorts("127.0.0.1:8888"))
+
+	url := callopt.WithURL("http://localhost:8888")
+	client, err := config.NewClient("config")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -21,7 +23,7 @@ func main() {
 		Namespace: "default",
 		Group:     "config",
 		Filename:  "config.yaml",
-	})
+	}, url)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	svr := api.NewServer(new(config.ConfigImpl))
+	svr := api.NewServer(config.ConfigImpl{})
 	err := svr.Run()
 	if err != nil {
 		log.Println(err.Error())
